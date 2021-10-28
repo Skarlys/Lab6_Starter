@@ -5,7 +5,10 @@
 const recipes = [
   'https://introweb.tech/assets/json/ghostCookies.json',
   'https://introweb.tech/assets/json/birthdayCake.json',
-  'https://introweb.tech/assets/json/chocolateChip.json'
+  'https://introweb.tech/assets/json/chocolateChip.json',
+  './assets/recipes/beef.json',
+  './assets/recipes/ricecakes.json',
+  './assets/recipes/boba.json',
 ];
 
 // Once all of the recipes that were specified above have been fetched, their
@@ -44,7 +47,9 @@ async function fetchRecipes() {
 
     // Part 1 Expose - TODO
 
+    let count = 0;
     for(const r in recipes){
+      count ++;
       fetch(recipes[r])
       .then(response => response.json())
       .then(wtf => {
@@ -87,6 +92,63 @@ function bindShowMore() {
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
+  const arrowpic = document.querySelector('#button-wrapper img');
+  arrowpic.src = './assets/images/icons/arrow-down.png';
+  /**
+  const recipes = [
+    'https://introweb.tech/assets/json/ghostCookies.json',
+    'https://introweb.tech/assets/json/birthdayCake.json',
+    'https://introweb.tech/assets/json/chocolateChip.json'
+  ];
+  
+  // Once all of the recipes that were specified above have been fetched, their
+  // data will be added to this object below. You may use whatever you like for the
+  // keys as long as it's unique, one suggestion might but the URL itself
+  const recipeData = {}
+*/
+
+  let main = document.getElementsByTagName("main")[0];
+  let extra = document.getElementsByTagName('button')[0];
+
+  let beef = document.createElement("recipe-card");
+  beef.data = recipeData[recipes[3]];
+
+  let rice = document.createElement("recipe-card");
+  rice.data = recipeData[recipes[4]];
+
+  let boba = document.createElement("recipe-card");
+  boba.data = recipeData[recipes[5]];
+
+      main.removeChild(main.lastChild);
+      main.removeChild(main.lastChild);
+      main.removeChild(main.lastChild);
+
+  let openClosed = false;
+  extra.addEventListener('click', () => {
+    if (!openClosed){
+      
+      main.appendChild(beef);
+      main.appendChild(rice);
+      main.appendChild(boba);
+
+      extra.textContent = "Show Less";
+      arrowpic.style.transform = "rotate("+ (-90 % 360) +"deg)"
+    }
+    else {
+      main.removeChild(beef);
+      main.removeChild(rice);
+      main.removeChild(boba);
+
+      extra.textContent = "Show More";
+      arrowpic.style.transform = "rotate("+ (0 % 360) +"deg)"
+    }
+    openClosed = !openClosed;
+    
+  })
+
+
+
+
 
 
 }
