@@ -132,7 +132,6 @@ function bindShowMore() {
       main.appendChild(boba);
 
       extra.textContent = "Show Less";
-      arrowpic.style.transform = "rotate("+ (-90 % 360) +"deg)"
     }
     else {
       main.removeChild(beef);
@@ -140,7 +139,6 @@ function bindShowMore() {
       main.removeChild(boba);
 
       extra.textContent = "Show More";
-      arrowpic.style.transform = "rotate("+ (0 % 360) +"deg)"
     }
     openClosed = !openClosed;
     
